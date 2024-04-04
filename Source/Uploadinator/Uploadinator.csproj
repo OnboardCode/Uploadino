@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>Uploadinator</AssemblyTitle>
+    <Company>Weslley Luiz</Company>
+    <Product>Uploadinator</Product>
+    <Copyright>Copyright © Weslley Luiz 2016 - 2024</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <LangVersion>10</LangVersion>
+    <ApplicationIcon>Uploadinator.ico</ApplicationIcon>
+  </PropertyGroup> 
+  <ItemGroup>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Uploadinator.ico" />
+    <None Update="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="NLog.Schema" Version="5.2.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uploadino\Uploadino.csproj" />
+  </ItemGroup>
+</Project>

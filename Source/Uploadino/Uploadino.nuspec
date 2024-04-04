@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Uploadino</id>
+    <version>$version$</version>
+    <title>Uploadino</title>
+    <authors>Weslley Luiz</authors>
+    <owners>Weslley Luiz</owners>
+    <projectUrl>https://github.com/onboardcode/Uploadino</projectUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/19640854?s=140</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library to upload an Intel HEX file (e.g. compiled sketches) directly to an Arduino over a (USB) serial port without having to use the Arduino IDE (or avrdude).</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>arduino upload serial avr flash hex net</tags>
+    <dependencies>
+      <dependency id="IntelHexFormatReader" version="2.2.3" />
+      <dependency id="SerialPortStream" version="2.1.2" />
+    </dependencies>  
+  </metadata>
+  <files>
+	<file src="bin\$configuration$\net8.0\Uploadino.dll" target="lib\net8.0\" />
+  </files>
+</package>

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <LangVersion>10</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>Uploadino</AssemblyTitle>
+    <Company>Weslley Luiz</Company>
+    <Product>Uploadino</Product>
+    <Copyright>Copyright © Weslley Luiz 2016 - 2024</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Arduinos.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Arduinos.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ArduinoUploader.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="IntelHexFormatReader" Version="2.2.3" />
+    <PackageReference Include="SerialPortStream" Version="2.1.2" />
+  </ItemGroup>
+</Project>
