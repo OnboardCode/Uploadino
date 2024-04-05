@@ -1,0 +1,60 @@
+name: release
+
+on: 
+  release:
+    types: [published]  
+    branches: [ $default-branch ]
+  workflow_dispatch:
+
+permissions:
+  contents: write 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies for Library
+      run: dotnet restore .\src\Uploadino\
+    
+    - name: Build Library
+      run: dotnet build .\src\Uploadino\ --no-restore -c Release
+    
+    - name: Pack Library
+      run: dotnet pack .\src\Uploadino\ 
+    
+    - name: Restore dependencies for tool
+      run: dotnet restore .\src\Uploadinator\
+    
+    - name: Build tool
+      run: dotnet build .\src\Uploadinator\ --no-restore -c Release
+    
+    - name: Pack tool
+      run: dotnet pack .\src\Uploadinator\ 
+    
+    - name: Release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ github.ref }}
+        tag_name: ${{ github.ref }} 
+      env: 
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: upload .nupkg 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ github.workspace }}/src/Uploadino/Uploadino.${{ env.PACKAGE_VERSION }}.nupkg
+        asset_name: Uploadino.${{ env.PACKAGE_VERSION }}.nupkg
+        asset_content_type: application/zip

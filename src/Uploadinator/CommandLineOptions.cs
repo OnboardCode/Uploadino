@@ -1,5 +1,5 @@
-﻿using Uploadino.Hardware;
-using CommandLine; 
+﻿using Uploadino.Hardware; 
+using McMaster.Extensions.CommandLineUtils;
 namespace Uploadinator;
 
 internal class CommandLineOptions
@@ -17,6 +17,12 @@ internal class CommandLineOptions
             + "[Leonardo, Mega1284, Mega2560, Micro, NanoR2, NanoR3, UnoR3].")]
     public ArduinoModel ArduinoModel { get; set; }
 
+    [HelpOption]
+    public string GetUsage()
+    {
+        return HelpText.AutoBuild(this,
+            current => HelpText.DefaultParsingErrorsHandler(this, current));
+    }
 }
 internal enum StatusCodes
 {
